@@ -1,13 +1,16 @@
+sudo:require
+dist: xenial
+language: bash
+
 before_install:
-- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+- "sudo apt-get -qq update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
 script:
-- mkdir pdf
-- pdflatex -output-directory pdf main.tex
+- bash test.sh ./ main
 
 deploy:
   provider: releases
   api_key:
     secure: PVYAMa2MSdhEXl5O6b+ieDSSOMLmBfppHLOH8AIsVU3poktSvx0zehyTF7zCOpu2/7H6JuuaUhKYOCMXiCYnbPfXsDXQ0mNefA3mDPO0BgDE3qNZLNKfKPonGTIe6/IUg0N8usxJVwC4+WJmkYGXNj7XaN3SZHvfIYar3s4nCsf53bFaQKD0Snqh75Rr+Y/xRmlxKj5TJS0V/DSs55JfwnfuufcWE4GT6O6D4UhI54v5rrMQtrGrLl5qQ4djiLGodHqIKZXvhfTLRi0krQv3BkKnm1iinNewvvdP4p0fj9PVzt2c2cvDujBXn7vnab/y6ZgUV7N/iYC0jOBwyXD+7lhKZxEXdGYg8GNC/jSTl9cCH9Sq+mH2R3F9RXeJ3JW+uIWmDQiNpI7bMbMVnMV8uHzK1gOgzQAObJUr6hz0b3JwSxBsxrJmDgHw+hZgqVGwlqZxYJAo00Vfdf1pdAdHYoGJGWj2tOCNa+GVt7tr57ZoGc1zMQswsXAu0ksLNc/ah3DkREP/do4X17h5vcwcfkLwcxFUD6+aA4hZUBH6Y9p6QOAtnGF+nwDoS8iFg/p1J0udXaDoguLee9vkkBtjPQX0WKRhygWAFixrT/aIjYdxz4v733+3jQqW0f5IxKkUJLw+BJx5Jzi+/4qKhVYZZ1nzxkMvhdwlcX6qQTlbJ3w=
-  file: pdf/main.pdf
+  file: main.pdf
   on:
     repo: renepickhardt/Automatically-Generating-a-Robust-Topology-for-the-Lightning-Network-on-top-of-Bitcoin
