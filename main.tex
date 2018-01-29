@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{hyperref}
+\title{[DRAFT]Automatically Generating a Robust Topology for the Lightning Network on top of Bitcoin\thanks{This paper is obviously a draft risen from the discussion at \url{https://github.com/lightningnetwork/lnd/issues/677} and therefor open to suggestions. I'll be happy for suggestions in my issue tracker at: \url{https://github.com/renepickhardt/Automatically-Generating-a-Robust-Topology-for-the-Lightning-Network-on-top-of-Bitcoin/issues}. I will also be happy to merge substantial pull requests and add you to the list of authors. Typos will also be merged but only be put to the list of thank you notes}
+%Thanks to the bitcoin core developer, the community around the lightning network and obviously our hero Satoshi Nakamoto.}
+\author{Rene Pickhardt \\
+	rene@rene-pickhardt.de
+	}
+}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+We provide an overview of methods and technologies that can be used and implemented for implementations of the lightning network which ensure a high path connecticity and cluster coefficient. 
+We also provide an overview and study of metrics (like channel balance, short distances (small diameter), high connectivity, number of hops,costs for opening and closing channels,\dots) which should be taken into consideration for automatically generating a robust topology for the lightning network.
+After careful consideration, evaluation and simulation we suggest a strategies how new lightning nodes should decide to which nodes in the network they should automatically open a payment chanel. 
+\end{abstract}
+
+\section{Introduction}
+\begin{itemize}
+\item Bitcoin does not scale without lightning
+\item Like in the beginning of the internet the lightning network needs to be build (which is cheaper since it is a logical network on the internet and no physical connections or extra hardweare is needed)
+\item Current Model for selecting payment channels following the Barabasi Albert Model might not be the best choice.
+\end{itemize}
+
+
+\section{Related Work}
+We plan to investigate the following related work. 
+\begin{itemize}
+\item Random Graph generation in complex systems and network science.
+\item Routing protocols and metrics from the field of autonoumus systems (path vector and distance vector protocols as well as the Border Gateway Protocol). 
+\item Information propagation and robustnes in ad-hoc P2P Networks.
+\item Bitcoin, lightning network and solutions for scaling of cryptocurrencies.
+\end{itemize}
+
+\section{Metrics and desired properties of the lightning network}
+The following metrics will be studied and looked at. Also the assumptions which are provided in there need to be checkt for plausability. 
+
+\begin{itemize}
+\item \textbf{Diameter} A small diameter produces short paths for onion routing 
+\item \textbf{Channel balance} Channels should be properly funded but also the channels should be balanced  
+\item \textbf{Connectivity} Removing nodes (in particular strongly connected nodes) should not be a problem for the remaining nodes
+\item \textbf{Uptime} It seems obvious that nodes with a high uptime are better candidates to open a channel to. 
+\item \textbf{Blockchain Transactions} Realizing that the Blockchain only supports around 300k Transactions per day the opening, closing and updating of channels should be minimized  
+\item \textbf{fees for routing} Maybe opening a channel (which is cost intensive) is cheaper overall
+\item \textbf{bandwith, latency,...} nodes can only process a certain amount of routing requests. \textbf{I assume} that also the HTLCs will lock channels for a certain amount of time during onion routing. 
+\item \textbf{internet topology} obviously routing through the network becomes faster if the P2P network has a similar topology as the underlying physical network. Also it makes sense since even on the internet people might most of the time use products and services within their geographic region. \textbf{check assumptions}
+\end{itemize}
+
+\section{Evaluation and Experiments}
+Describe the experiments and simulations
+
+
+\section{Conclusion}
+\cite{nak} and \cite{poon} created a great paper.
+
+
+\begin{thebibliography}{9}
+\bibitem[Nak]{nak} \emph{Bitcoin: A Peer-to-Peer Electronic Cash System },
+Satoshi Nakamoto.  
+\bibitem[Poo]{poon} \emph{The Bitcoin Lightning Network:
+Scalable Off-Chain Instant Payments},
+Joseph Poon and Thaddeus Dryja
+
+
+\end{thebibliography}
+
+\end{document}
